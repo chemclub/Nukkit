@@ -5,7 +5,7 @@
     <name>Nukkit</name>
     <groupId>cn.nukkit</groupId>
     <artifactId>nukkit</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-g1.4</version>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -116,6 +116,30 @@
                         <version>${junit.platform.version}</version>
                     </dependency>
                 </dependencies>
+            </plugin>
+            <!-- Update git submodules -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <inherited>false</inherited>
+                <executions>
+                    <execution>
+                        <id>git submodule update</id>
+                        <phase>initialize</phase>
+                        <configuration>
+                            <executable>git</executable>
+                            <arguments>
+                                <argument>submodule</argument>
+                                <argument>update</argument>
+                                <argument>--init</argument>
+                                <argument>--recursive</argument>
+                            </arguments>
+                        </configuration>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
