@@ -14,11 +14,7 @@
         <junit.platform.version>1.0.0-M4</junit.platform.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <!-- 本地测试服务端插件目录 -->
-        <dir.api>../../_api</dir.api>
         <dir.server>../../_server</dir.server>
-        <dir.login>../../_login</dir.login>
-        <dir.proxy>../../_proxy</dir.proxy>
-        <dir.login-proxy>../../_proxy0</dir.login-proxy>
     </properties>
 
     <dependencies>
@@ -242,12 +238,6 @@
                                 <echo message="正在复制 ${project.build.finalName} 至本地测试服务端目录..."/>
                                 <mkdir dir="${dir.server}"/>
                                 <copy todir="${dir.server}" overwrite="true">
-                                    <fileset dir="${project.build.directory}">
-                                        <include name="${project.build.finalName}.jar" />
-                                    </fileset>
-                                </copy>
-                                <mkdir dir="${dir.login}"/>
-                                <copy todir="${dir.login}" overwrite="true">
                                     <fileset dir="${project.build.directory}">
                                         <include name="${project.build.finalName}.jar" />
                                     </fileset>
