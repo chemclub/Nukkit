@@ -237,7 +237,10 @@ public abstract class BaseChunk extends BaseFullChunk implements Chunk {
     public byte[] getBlockSkyLightArray() {
         ByteBuffer buffer = ByteBuffer.allocate(2048 * SECTION_COUNT);
         for (int y = 0; y < SECTION_COUNT; y++) {
-            buffer.put(this.sections[y].getSkyLightArray());
+            for (byte b : this.sections[y].getSkyLightArray()) {
+                buffer.put(b == -1 ? 0 : b);
+            }
+            //buffer.put(this.sections[y].getSkyLightArray());
         }
         return buffer.array();
     }
