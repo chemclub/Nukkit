@@ -18,6 +18,8 @@ public class GlobalBlockPalette {
     private static final Int2IntArrayMap runtimeIdToLegacy = new Int2IntArrayMap();
     private static final AtomicInteger runtimeIdAllocator = new AtomicInteger(0);
 
+    private static final boolean isNetEase = Server.getInstance().getConfig().getBoolean("netease", false);
+
     static {
         legacyToRuntimeId.defaultReturnValue(-1);
         runtimeIdToLegacy.defaultReturnValue(-1);
@@ -47,7 +49,7 @@ public class GlobalBlockPalette {
             runtimeId = registerMapping(runtimeIdAllocator.incrementAndGet(), legacyId);
             MainLogger.getLogger().warning("Unmapped block registered. May not be recognised client-side");
         }
-        return runtimeId;
+        return isNetEase ? (runtimeId >= 1982 ? runtimeId + 15 : runtimeId) : runtimeId;
     }
 
     private static int registerMapping(int runtimeId, int legacyId) {
